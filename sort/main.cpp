@@ -20,12 +20,13 @@ int main() {
     }
     cout << endl;
 
-    shared_ptr<Sortmethod> sort_ptr = make_shared<SelectSort>();
+    shared_ptr<Sortmethod> sort_ptr = make_shared<MergeSort>();
 
     sort_ptr -> sort(test_case);
     cout << "Sort test case: ";
     for (auto a : test_case) {
         cout << a << " ";
+
     }
     cout << endl;
 }

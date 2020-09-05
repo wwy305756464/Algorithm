@@ -8,6 +8,7 @@ class Sortmethod {
         virtual void sort(vector<int> &a) = 0;
 };
 
+
 class QuickSort : public Sortmethod{
     public:
         void sort(vector<int> &a){
@@ -47,7 +48,6 @@ class QuickSort : public Sortmethod{
         }
 };
 
-// TODO: merge sort
 
 class MergeSort : public Sortmethod{
     public:
@@ -107,11 +107,72 @@ class MergeSort : public Sortmethod{
         }
 };
 
-// TODO: select sort
 
-// TODO: insert sort
+class SelectSort : public Sortmethod{
+    public:
+        void sort(vector<int> &a){
+            if(a.size() == 0) {
+                return;
+            }
+            // int ptr1 = 0;
+            for (int i = 0; i < a.size(); ++i) {
+                int min = i;
+                int temp = a[i];
+                for (int j = i + 1; j < a.size(); ++j) {
+                    if (a[j] < a[min]) {
+                        min = j;
+                    }
+                }
+                a[i] = a[min];
+                a[min] = temp;
+            }
+        }
 
-// TODO: bubble sort
+};
+
+
+class InsertSort : public Sortmethod{
+    public:
+        void sort(vector<int> &a) {
+            if(a.size() == 0) {
+                return;
+            }
+
+            for(int i = 1; i < a.size(); ++i) {
+                int temp = a[i];
+                int j = i - 1;
+                while (j >= 0 && a[j] > temp) {
+                    j--;
+                } // 找到 j 这个最终要插入的位置
+
+                for (int k = i; k > j + 1; k--){
+                    a[k] = a[k-1];
+                } // j 和 i 之间的左右数字都要后移一步
+
+                a[j+1] = temp; // 插入 a[i]
+            }
+        }
+};
+
+
+class BubbleSort : public Sortmethod{
+    public:
+        void sort(vector<int> &a) {
+            if (a.size() == 0) {
+                return;
+            }
+
+            for (int i = 0; i < a.size(); ++i) {
+                for (int j = 1; j < a.size() - i; ++j) {
+                    if(a[j] < a[j - 1]) {
+                        int temp = a[j-1];
+                        a[j - 1] = a[j];
+                        a[j] = temp;
+                    }
+                }
+            }
+        }
+};
 
 // TODO: shell sort
 
@@ -123,21 +184,4 @@ class MergeSort : public Sortmethod{
 
 // TODO: radio sort
 
-
-class SelectSort : public Sortmethod{
-    public:
-        void sort(vector<int> &a) {
-            if(a.size() < 2) return;
-            cout << "\nThis is Select sort " << endl;
-            for (int i = 0; i != a.size(); ++i) {
-                int min = i;
-                int temp = a[i];
-                for (int j = i + 1; j != a.size(); ++j) {
-                    if (a[j] < a[min]) min = j;
-                }
-                a[i] = a[min];
-                a[min] = temp;
-            }
-        }
-};
 

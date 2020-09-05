@@ -20,7 +20,7 @@ int main() {
     }
     cout << endl;
 
-    shared_ptr<Sortmethod> sort_ptr = make_shared<MergeSort>();
+    shared_ptr<Sortmethod> sort_ptr = make_shared<BubbleSort>();
 
     sort_ptr -> sort(test_case);
     cout << "Sort test case: ";
